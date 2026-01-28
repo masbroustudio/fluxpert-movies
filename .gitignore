@@ -47,5 +47,5 @@ app.*.map.json
 
 .vscode/templates
 
-TASK.md
-TODOLIST.md
+/TASK.md
+/TODOLIST.md
