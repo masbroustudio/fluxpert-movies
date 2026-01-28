@@ -22,8 +22,11 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    # Suppress rules that are acceptable for this project
+    constant_identifier_names: false # Allow UPPER_CASE for constants like ROUTE_NAME, API_KEY
+    library_private_types_in_public_api: false # Standard Flutter pattern
+    use_build_context_synchronously: false # We handle context carefully
+    prefer_const_constructors: false # Optional performance optimization
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

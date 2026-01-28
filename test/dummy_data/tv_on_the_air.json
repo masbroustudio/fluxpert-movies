@@ -1,0 +1,21 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/path.jpg",
+      "genre_ids": [18, 80],
+      "id": 1396,
+      "origin_country": ["US"],
+      "original_language": "en",
+      "original_name": "Breaking Bad",
+      "overview": "A high school chemistry teacher turned methamphetamine manufacturer.",
+      "popularity": 123.456,
+      "poster_path": "/poster.jpg",
+      "first_air_date": "2008-01-20",
+      "name": "Breaking Bad",
+      "vote_average": 9.2,
+      "vote_count": 8500
+    }
+  ]
+}

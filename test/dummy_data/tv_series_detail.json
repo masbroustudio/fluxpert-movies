@@ -1,0 +1,31 @@
+{
+  "adult": false,
+  "backdrop_path": "/backdrop.jpg",
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ],
+  "id": 1396,
+  "original_name": "Breaking Bad",
+  "overview": "A high school chemistry teacher turned methamphetamine manufacturer.",
+  "poster_path": "/poster.jpg",
+  "first_air_date": "2008-01-20",
+  "name": "Breaking Bad",
+  "vote_average": 9.2,
+  "vote_count": 8500,
+  "number_of_episodes": 62,
+  "number_of_seasons": 5,
+  "seasons": [
+    {
+      "id": 1,
+      "name": "Season 1",
+      "episode_count": 7,
+      "season_number": 1,
+      "air_date": "2008-01-20",
+      "overview": "Season 1 overview",
+      "poster_path": "/season1.jpg"
+    }
+  ]
+}
