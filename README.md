@@ -3,10 +3,12 @@
 [![Flutter CI/CD](https://github.com/masbroustudio/fluxpert-movies/workflows/Flutter%20CI%2FCD/badge.svg)](https://github.com/masbroustudio/fluxpert-movies/actions)
 [![Flutter](https://img.shields.io/badge/Flutter-3.27.1-02569B?logo=flutter)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.6.1-0175C2?logo=dart)](https://dart.dev)
-[![Tests](https://img.shields.io/badge/Tests-141%20Passed-success)](.)
-[![Coverage](https://img.shields.io/badge/Coverage-70.98%25-brightgreen)](.)
+[![Tests](https://img.shields.io/badge/Tests-128%20Passed-success)](.)
+[![Coverage](https://img.shields.io/badge/Coverage-77.96%25-brightgreen)](.)
 
 Aplikasi Flutter katalog film dan serial TV menggunakan The Movie Database (TMDB) API dengan implementasi Clean Architecture, BLoC State Management, SSL Pinning, CI/CD, dan Test-Driven Development.
+
+**🎉 NEW: Movies Feature Fully Migrated to BLoC Pattern!**
 
 ---
 
@@ -26,13 +28,14 @@ Aplikasi Flutter katalog film dan serial TV menggunakan The Movie Database (TMDB
 
 ## ✨ Features
 
-### Movies (Provider Pattern)
-- ✅ Now Playing Movies
-- ✅ Popular Movies
-- ✅ Top Rated Movies
-- ✅ Movie Detail with Recommendations
-- ✅ Search Movies
-- ✅ Watchlist Movies (SQLite)
+### Movies (BLoC Pattern) 🎉
+- ✅ Now Playing Movies (BLoC)
+- ✅ Popular Movies (BLoC)
+- ✅ Top Rated Movies (BLoC)
+- ✅ Movie Detail with Recommendations (BLoC)
+- ✅ Search Movies (with debounce 500ms)
+- ✅ Watchlist Movies (SQLite with BLoC)
+- ✅ **Fully migrated from Provider to BLoC!**
 
 ### TV Series (BLoC Pattern)
 - ✅ On The Air TV Series
@@ -67,12 +70,16 @@ lib/
 ```
 
 ### Design Patterns
-- **Movies**: Provider Pattern (state management)
+- **Movies**: BLoC Pattern (state management) 🎉 **NEW!**
 - **TV Series**: BLoC Pattern (state management)
 - **Modularization**: Feature-based modules (core, movie, tv_series)
 - **Dependency Injection**: GetIt
 - **Functional Error Handling**: Dartz (Either)
 - **SSL Pinning**: Native Dart SecurityContext
+
+### State Management Evolution
+- ✅ **Phase 1**: Movies with Provider, TV Series with BLoC
+- ✅ **Phase 2**: **Both Movies and TV Series with BLoC** (Current)
 
 ---
 
@@ -82,7 +89,7 @@ lib/
 |----------|-----------|
 | **Framework** | Flutter 3.27.1 |
 | **Language** | Dart 3.6.1 |
-| **State Management** | Provider (Movies), BLoC (TV Series) |
+| **State Management** | BLoC (Movies & TV Series) |
 | **Network** | HTTP with SSL Pinning |
 | **Local Database** | SQLite (sqflite) |
 | **Testing** | flutter_test, mockito, bloc_test, integration_test |
@@ -172,7 +179,7 @@ build_runner: ^2.4.6
 ```bash
 flutter test
 ```
-Expected: **141 tests passed** ✅
+Expected: **128 tests passed** ✅
 
 ### Run Tests with Coverage
 ```bash
@@ -181,9 +188,9 @@ flutter test --coverage
 
 ### Calculate Coverage Percentage
 ```bash
-dart calculate_coverage.dart
+dart run calculate_coverage.dart
 ```
-Current Coverage: **70.98%** 🎯
+Current Coverage: **77.96%** 🎯 ⬆️ (+7% from 70.98%)
 
 ### Run Integration Tests
 ```bash
@@ -203,8 +210,8 @@ Project ini menggunakan **GitHub Actions** untuk automated testing dan building.
 ### What Gets Tested
 - ✅ Code formatting
 - ✅ Static analysis (flutter analyze)
-- ✅ Unit tests (141 tests)
-- ✅ Code coverage calculation
+- ✅ Unit tests (128 tests)
+- ✅ Code coverage calculation (77.96%)
 - ✅ Debug APK build
 
 ### Artifacts
@@ -216,12 +223,12 @@ See [CI/CD Setup Guide](.github/CICD_SETUP.md) for details.
 
 Expected output:
 ```
-Total Lines: 1261
-Covered Lines: 895
-Coverage: 70.98%
+Total Lines: 1021
+Covered Lines: 796
+Coverage: 77.96%
 ```
 
-**Result**: ✅ **70.98% coverage achieved!** (Target: ≥70%)
+**Result**: ✅ **77.96% coverage achieved!** (Target: ≥70%, Actual: +7.96% above target! 🎉)
 
 ### Generate HTML Coverage Report (Optional)
 
@@ -246,11 +253,11 @@ start coverage/html/index.html
 # TV Series UseCase tests
 flutter test test/domain/usecases/
 
-# TV Series BLoC tests
-flutter test test/presentation/bloc/
+# Movie BLoC tests (NEW!)
+flutter test test/presentation/bloc/movie_*.dart
 
-# Movie Provider tests
-flutter test test/presentation/provider/
+# TV Series BLoC tests
+flutter test test/presentation/bloc/tv_series_*.dart
 ```
 
 ---
