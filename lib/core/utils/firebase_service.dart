@@ -28,8 +28,9 @@ class FirebaseService {
       _analytics = FirebaseAnalytics.instance;
       _crashlytics = FirebaseCrashlytics.instance;
 
-      // Configure Crashlytics
-      await _crashlytics!.setCrashlyticsCollectionEnabled(!kDebugMode);
+      // Configure Crashlytics - ENABLED for testing
+      // Change to !kDebugMode for production
+      await _crashlytics!.setCrashlyticsCollectionEnabled(true);
 
       // Pass all uncaught errors from Flutter framework to Crashlytics
       FlutterError.onError = _crashlytics!.recordFlutterFatalError;

@@ -153,6 +153,15 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Test Crashlytics - REMOVE AFTER TESTING
+          FirebaseService.testCrash();
+        },
+        backgroundColor: Colors.red,
+        child: const Icon(Icons.bug_report),
+        tooltip: 'Test Crashlytics',
+      ),
     );
   }
 
