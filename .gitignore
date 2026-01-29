@@ -85,7 +85,7 @@ lcov.info
 .vscode/templates
 
 # Keep important documentation
-!TASK.md
-!TODOLIST.md
 !README.md
 !README_NEW.md
+DOCS/
+/DOCS/
