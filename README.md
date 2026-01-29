@@ -1,6 +1,6 @@
 # Fluxpert - Movie & TV Series Catalog App
 
-[![Flutter CI/CD](https://github.com/fr13think/fluxpert-movies/workflows/Flutter%20CI%2FCD/badge.svg)](https://github.com/fr13think/fluxpert-movies/actions)
+[![Flutter CI/CD](https://github.com/masbroustudio/fluxpert-movies/workflows/Flutter%20CI%2FCD/badge.svg)](https://github.com/masbroustudio/fluxpert-movies/actions)
 [![Flutter](https://img.shields.io/badge/Flutter-3.27.1-02569B?logo=flutter)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.6.1-0175C2?logo=dart)](https://dart.dev)
 [![Tests](https://img.shields.io/badge/Tests-141%20Passed-success)](.)
@@ -198,7 +198,7 @@ flutter test integration_test/app_test.dart
 Project ini menggunakan **GitHub Actions** untuk automated testing dan building.
 
 ### Workflow Status
-![Flutter CI/CD](https://github.com/fr13think/fluxpert-movies/workflows/Flutter%20CI%2FCD/badge.svg)
+![Flutter CI/CD](https://github.com/masbroustudio/fluxpert-movies/workflows/Flutter%20CI%2FCD/badge.svg)
 
 ### What Gets Tested
 - ✅ Code formatting
