@@ -7,14 +7,18 @@ import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:ditonton/core/common/failure.dart' as _i6;
-import 'package:ditonton/tv_series/domain/entities/tv_series_detail.dart' as _i7;
-import 'package:ditonton/tv_series/domain/repositories/tv_series_repository.dart' as _i2;
-import 'package:ditonton/tv_series/domain/usecases/get_tv_series_detail.dart' as _i4;
+import 'package:ditonton/tv_series/domain/entities/tv_series_detail.dart'
+    as _i7;
+import 'package:ditonton/tv_series/domain/repositories/tv_series_repository.dart'
+    as _i2;
+import 'package:ditonton/tv_series/domain/usecases/get_tv_series_detail.dart'
+    as _i4;
 import 'package:ditonton/tv_series/domain/usecases/get_watchlist_tv_series_status.dart'
     as _i8;
 import 'package:ditonton/tv_series/domain/usecases/remove_tv_series_watchlist.dart'
     as _i10;
-import 'package:ditonton/tv_series/domain/usecases/save_tv_series_watchlist.dart' as _i9;
+import 'package:ditonton/tv_series/domain/usecases/save_tv_series_watchlist.dart'
+    as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

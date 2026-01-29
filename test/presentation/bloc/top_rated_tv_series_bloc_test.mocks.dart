@@ -8,8 +8,10 @@ import 'dart:async' as _i5;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:ditonton/core/common/failure.dart' as _i6;
 import 'package:ditonton/tv_series/domain/entities/tv_series.dart' as _i7;
-import 'package:ditonton/tv_series/domain/repositories/tv_series_repository.dart' as _i2;
-import 'package:ditonton/tv_series/domain/usecases/get_top_rated_tv_series.dart' as _i4;
+import 'package:ditonton/tv_series/domain/repositories/tv_series_repository.dart'
+    as _i2;
+import 'package:ditonton/tv_series/domain/usecases/get_top_rated_tv_series.dart'
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
