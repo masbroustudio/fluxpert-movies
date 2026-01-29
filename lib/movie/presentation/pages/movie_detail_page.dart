@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/core/common/constants.dart';
 import 'package:ditonton/core/common/genre.dart';
+import 'package:ditonton/core/utils/firebase_service.dart';
 import 'package:ditonton/movie/domain/entities/movie.dart';
 import 'package:ditonton/movie/domain/entities/movie_detail.dart';
 import 'package:ditonton/movie/presentation/provider/movie_detail_notifier.dart';
@@ -29,6 +30,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       Provider.of<MovieDetailNotifier>(context, listen: false)
           .loadWatchlistStatus(widget.id);
     });
+    
+    // Log screen view
+    FirebaseService.logScreenView('movie_detail');
   }
 
   @override
@@ -42,6 +46,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             );
           } else if (provider.movieState == RequestState.Loaded) {
             final movie = provider.movie;
+            
+            // Log movie viewed analytics
+            FirebaseService.logMovieViewed(movie.id, movie.title);
+            
             return SafeArea(
               child: DetailContent(
                 movie,

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/core/common/constants.dart';
+import 'package:ditonton/core/utils/firebase_service.dart';
 import 'package:ditonton/movie/domain/entities/movie.dart';
 import 'package:ditonton/core/common/about_page.dart';
 import 'package:ditonton/tv_series/presentation/pages/home_tv_series_page.dart';
@@ -29,6 +30,9 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ..fetchNowPlayingMovies()
           ..fetchPopularMovies()
           ..fetchTopRatedMovies());
+    
+    // Log screen view
+    FirebaseService.logScreenView('home_movies');
   }
 
   @override

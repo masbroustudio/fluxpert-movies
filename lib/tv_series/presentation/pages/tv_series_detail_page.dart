@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/core/common/constants.dart';
 import 'package:ditonton/core/common/genre.dart';
+import 'package:ditonton/core/utils/firebase_service.dart';
 import 'package:ditonton/tv_series/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/tv_series/presentation/bloc/tv_series_detail_bloc.dart';
 import 'package:ditonton/tv_series/presentation/bloc/tv_series_detail_event_state.dart';
@@ -25,6 +26,9 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
     Future.microtask(() {
       context.read<TvSeriesDetailBloc>().add(FetchTvSeriesDetail(widget.id));
     });
+    
+    // Log screen view
+    FirebaseService.logScreenView('tv_series_detail');
   }
 
   @override
@@ -56,6 +60,10 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
             );
           } else if (state is TvSeriesDetailLoaded) {
             final tvSeries = state.tvSeriesDetail;
+            
+            // Log TV series viewed analytics
+            FirebaseService.logTvSeriesViewed(tvSeries.id, tvSeries.name);
+            
             return SafeArea(
               child: DetailContent(
                 tvSeries,

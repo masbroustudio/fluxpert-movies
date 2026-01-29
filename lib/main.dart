@@ -1,5 +1,6 @@
 import 'package:ditonton/core/common/constants.dart';
 import 'package:ditonton/core/common/utils.dart';
+import 'package:ditonton/core/utils/firebase_service.dart';
 import 'package:ditonton/tv_series/presentation/bloc/on_the_air_tv_series_bloc.dart';
 import 'package:ditonton/tv_series/presentation/bloc/popular_tv_series_bloc.dart';
 import 'package:ditonton/tv_series/presentation/bloc/top_rated_tv_series_bloc.dart';
@@ -34,8 +35,14 @@ import 'package:ditonton/core/di/injection.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Firebase
+  await FirebaseService.initialize();
+  
+  // Initialize dependency injection
   di.init();
   await di.initHttpClient(); // Initialize SSL Pinning
+  
   runApp(const MyApp());
 }
 

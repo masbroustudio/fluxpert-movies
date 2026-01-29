@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+migrate_errors.txt
 
 # IntelliJ related
 *.iml
@@ -45,7 +46,46 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Firebase Configuration Files (DO NOT COMMIT!)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+firebase_app_id_file.json
+
+# Gradle related
+.gradle/
+android/.gradle/
+android/local.properties
+android/gradle.properties.local
+
+# Kotlin compiler cache
+.kotlin/
+
+# Coverage reports
+coverage/
+*.lcov
+test/.test_coverage.dart
+lcov.info
+
+# Build artifacts
+*.apk
+*.ap_
+*.dex
+*.class
+
+# Backup files
+*.backup
+*.bak
+*_OLD.md
+
+# Scripts (optional - uncomment if needed)
+# *.bat
+# *.sh
+
+# VS Code templates
 .vscode/templates
 
+# Keep important documentation
 !TASK.md
 !TODOLIST.md
+!README.md
+!README_NEW.md

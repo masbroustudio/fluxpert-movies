@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/core/common/constants.dart';
+import 'package:ditonton/core/utils/firebase_service.dart';
 import 'package:ditonton/tv_series/domain/entities/tv_series.dart';
 import 'package:ditonton/tv_series/presentation/bloc/on_the_air_tv_series_bloc.dart';
 import 'package:ditonton/tv_series/presentation/bloc/on_the_air_tv_series_event_state.dart';
@@ -34,6 +35,9 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
       context.read<PopularTvSeriesBloc>().add(FetchPopularTvSeries());
       context.read<TopRatedTvSeriesBloc>().add(FetchTopRatedTvSeries());
     });
+    
+    // Log screen view
+    FirebaseService.logScreenView('home_tv_series');
   }
 
   @override
