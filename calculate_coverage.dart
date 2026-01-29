@@ -16,7 +16,10 @@ void main() {
   }
   
   final coverage = (coveredLines / totalLines * 100).toStringAsFixed(2);
+  // ignore: avoid_print
   print('Total Lines: $totalLines');
+  // ignore: avoid_print
   print('Covered Lines: $coveredLines');
+  // ignore: avoid_print
   print('Coverage: $coverage%');
 }

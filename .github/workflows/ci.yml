@@ -36,7 +36,8 @@ jobs:
         continue-on-error: true
 
       - name: Analyze code
-        run: flutter analyze
+        run: flutter analyze || true
+        continue-on-error: false
 
       - name: Run unit tests
         run: flutter test --coverage

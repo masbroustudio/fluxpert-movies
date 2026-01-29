@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
@@ -27,7 +28,9 @@ class SecureHttpClient {
       return IOClient(httpClient);
     } catch (e) {
       // Fallback to regular HTTP client if pinning fails
-      print('Warning: SSL Pinning failed, using regular HTTP client: $e');
+      if (kDebugMode) {
+        print('Warning: SSL Pinning failed, using regular HTTP client: $e');
+      }
       return http.Client();
     }
   }
@@ -41,7 +44,9 @@ class SecureHttpClient {
       client.close();
       return response.statusCode == 401; // 401 means API key invalid but connection works
     } catch (e) {
-      print('SSL Pinning check failed: $e');
+      if (kDebugMode) {
+        print('SSL Pinning check failed: $e');
+      }
       return false;
     }
   }
