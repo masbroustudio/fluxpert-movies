@@ -1,11 +1,12 @@
 # Fluxpert - Movie & TV Series Catalog App
 
+[![Flutter CI/CD](https://github.com/YOUR_USERNAME/YOUR_REPO/workflows/Flutter%20CI%2FCD/badge.svg)](https://github.com/YOUR_USERNAME/YOUR_REPO/actions)
 [![Flutter](https://img.shields.io/badge/Flutter-3.27.1-02569B?logo=flutter)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.6.1-0175C2?logo=dart)](https://dart.dev)
 [![Tests](https://img.shields.io/badge/Tests-141%20Passed-success)](.)
 [![Coverage](https://img.shields.io/badge/Coverage-70.98%25-brightgreen)](.)
 
-Aplikasi Flutter katalog film dan serial TV menggunakan The Movie Database (TMDB) API dengan implementasi Clean Architecture, BLoC State Management, dan Test-Driven Development.
+Aplikasi Flutter katalog film dan serial TV menggunakan The Movie Database (TMDB) API dengan implementasi Clean Architecture, BLoC State Management, SSL Pinning, CI/CD, dan Test-Driven Development.
 
 ---
 
@@ -46,30 +47,32 @@ Aplikasi Flutter katalog film dan serial TV menggunakan The Movie Database (TMDB
 
 ## 🏗️ Architecture
 
-Project ini menggunakan **Clean Architecture** dengan pemisahan layer:
+Project ini menggunakan **Clean Architecture** dengan **Modular Structure**:
 
 ```
 lib/
-├── domain/          # Business Logic Layer
-│   ├── entities/    # Plain Dart objects
-│   ├── repositories/# Abstract repository contracts
-│   └── usecases/    # Business use cases
-├── data/            # Data Layer
-│   ├── models/      # Data models (JSON mapping)
-│   ├── datasources/ # Remote (API) & Local (SQLite)
-│   └── repositories/# Repository implementations
-└── presentation/    # Presentation Layer
-    ├── pages/       # UI screens
-    ├── widgets/     # Reusable widgets
-    ├── provider/    # Provider notifiers (Movies)
-    └── bloc/        # BLoC state management (TV Series)
+├── core/              # Shared utilities & infrastructure
+│   ├── common/        # Constants, utils, exceptions
+│   ├── database/      # DatabaseHelper (SQLite)
+│   ├── network/       # SecureHttpClient (SSL Pinning)
+│   └── di/            # Dependency Injection (GetIt)
+├── movie/             # Movie Feature Module
+│   ├── data/          # Models, DataSources, Repositories
+│   ├── domain/        # Entities, UseCases, Repository contracts
+│   └── presentation/  # Pages, Providers, Widgets
+└── tv_series/         # TV Series Feature Module
+    ├── data/          # Models, DataSources, Repositories
+    ├── domain/        # Entities, UseCases, Repository contracts
+    └── presentation/  # Pages, BLoCs, Widgets
 ```
 
 ### Design Patterns
-- **Movies**: Provider Pattern (existing implementation)
-- **TV Series**: BLoC Pattern (new implementation)
+- **Movies**: Provider Pattern (state management)
+- **TV Series**: BLoC Pattern (state management)
+- **Modularization**: Feature-based modules (core, movie, tv_series)
 - **Dependency Injection**: GetIt
 - **Functional Error Handling**: Dartz (Either)
+- **SSL Pinning**: Native Dart SecurityContext
 
 ---
 
@@ -80,10 +83,11 @@ lib/
 | **Framework** | Flutter 3.27.1 |
 | **Language** | Dart 3.6.1 |
 | **State Management** | Provider (Movies), BLoC (TV Series) |
-| **Network** | HTTP, Dio |
+| **Network** | HTTP with SSL Pinning |
 | **Local Database** | SQLite (sqflite) |
-| **Testing** | flutter_test, mockito, bloc_test |
-| **Code Quality** | flutter_lints, dart fix |
+| **Testing** | flutter_test, mockito, bloc_test, integration_test |
+| **CI/CD** | GitHub Actions |
+| **Code Quality** | flutter_lints, dart format |
 | **API** | The Movie Database (TMDB) |
 
 ### Dependencies
@@ -164,7 +168,7 @@ build_runner: ^2.4.6
 
 ## 🧪 Running Tests
 
-### Run All Tests
+### Run All Unit Tests
 ```bash
 flutter test
 ```
@@ -179,6 +183,36 @@ flutter test --coverage
 ```bash
 dart calculate_coverage.dart
 ```
+Current Coverage: **70.98%** 🎯
+
+### Run Integration Tests
+```bash
+# With connected device or emulator
+flutter test integration_test/app_test.dart
+```
+
+---
+
+## 🚀 CI/CD
+
+Project ini menggunakan **GitHub Actions** untuk automated testing dan building.
+
+### Workflow Status
+![Flutter CI/CD](https://github.com/YOUR_USERNAME/YOUR_REPO/workflows/Flutter%20CI%2FCD/badge.svg)
+
+### What Gets Tested
+- ✅ Code formatting
+- ✅ Static analysis (flutter analyze)
+- ✅ Unit tests (141 tests)
+- ✅ Code coverage calculation
+- ✅ Debug APK build
+
+### Artifacts
+Setiap workflow run menghasilkan:
+- **debug-apk** - Built APK file
+- **analysis-report** - Static analysis results
+
+See [CI/CD Setup Guide](.github/CICD_SETUP.md) for details.
 
 Expected output:
 ```

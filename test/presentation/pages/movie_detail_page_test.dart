@@ -1,8 +1,6 @@
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
+import 'package:ditonton/movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-
-import 'movie_detail_page_test.mocks.dart';
 
 @GenerateMocks([MovieDetailNotifier])
 void main() {

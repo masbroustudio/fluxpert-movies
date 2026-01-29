@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/usecases/save_tv_series_watchlist.dart';
+import 'package:ditonton/tv_series/domain/usecases/save_tv_series_watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

@@ -1,39 +1,41 @@
-import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/bloc/on_the_air_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/popular_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/top_rated_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series_detail_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series_search_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series_watchlist_bloc.dart';
-import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/home_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/presentation/pages/home_movie_page.dart';
-import 'package:ditonton/presentation/pages/on_the_air_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
-import 'package:ditonton/presentation/pages/popular_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/search_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_tv_series_page.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:ditonton/core/common/constants.dart';
+import 'package:ditonton/core/common/utils.dart';
+import 'package:ditonton/tv_series/presentation/bloc/on_the_air_tv_series_bloc.dart';
+import 'package:ditonton/tv_series/presentation/bloc/popular_tv_series_bloc.dart';
+import 'package:ditonton/tv_series/presentation/bloc/top_rated_tv_series_bloc.dart';
+import 'package:ditonton/tv_series/presentation/bloc/tv_series_detail_bloc.dart';
+import 'package:ditonton/tv_series/presentation/bloc/tv_series_search_bloc.dart';
+import 'package:ditonton/tv_series/presentation/bloc/tv_series_watchlist_bloc.dart';
+import 'package:ditonton/core/common/about_page.dart';
+import 'package:ditonton/tv_series/presentation/pages/home_tv_series_page.dart';
+import 'package:ditonton/movie/presentation/pages/movie_detail_page.dart';
+import 'package:ditonton/movie/presentation/pages/home_movie_page.dart';
+import 'package:ditonton/tv_series/presentation/pages/on_the_air_tv_series_page.dart';
+import 'package:ditonton/movie/presentation/pages/popular_movies_page.dart';
+import 'package:ditonton/tv_series/presentation/pages/popular_tv_series_page.dart';
+import 'package:ditonton/movie/presentation/pages/search_page.dart';
+import 'package:ditonton/tv_series/presentation/pages/search_tv_series_page.dart';
+import 'package:ditonton/movie/presentation/pages/top_rated_movies_page.dart';
+import 'package:ditonton/tv_series/presentation/pages/top_rated_tv_series_page.dart';
+import 'package:ditonton/tv_series/presentation/pages/tv_series_detail_page.dart';
+import 'package:ditonton/movie/presentation/pages/watchlist_movies_page.dart';
+import 'package:ditonton/tv_series/presentation/pages/watchlist_tv_series_page.dart';
+import 'package:ditonton/movie/presentation/provider/movie_detail_notifier.dart';
+import 'package:ditonton/movie/presentation/provider/movie_list_notifier.dart';
+import 'package:ditonton/movie/presentation/provider/movie_search_notifier.dart';
+import 'package:ditonton/movie/presentation/provider/popular_movies_notifier.dart';
+import 'package:ditonton/movie/presentation/provider/top_rated_movies_notifier.dart';
+import 'package:ditonton/movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:ditonton/injection.dart' as di;
+import 'package:ditonton/core/di/injection.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   di.init();
+  await di.initHttpClient(); // Initialize SSL Pinning
   runApp(const MyApp());
 }
 
