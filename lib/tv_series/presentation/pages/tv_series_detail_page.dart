@@ -5,6 +5,7 @@ import 'package:ditonton/core/utils/firebase_service.dart';
 import 'package:ditonton/tv_series/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/tv_series/presentation/bloc/tv_series_detail_bloc.dart';
 import 'package:ditonton/tv_series/presentation/bloc/tv_series_detail_event_state.dart';
+import 'package:ditonton/tv_series/presentation/bloc/tv_series_recommendations_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -25,8 +26,11 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
     super.initState();
     Future.microtask(() {
       context.read<TvSeriesDetailBloc>().add(FetchTvSeriesDetail(widget.id));
+      context
+          .read<TvSeriesRecommendationsBloc>()
+          .add(FetchTvSeriesRecommendations(widget.id));
     });
-    
+
     // Log screen view
     FirebaseService.logScreenView('tv_series_detail');
   }
@@ -60,10 +64,10 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
             );
           } else if (state is TvSeriesDetailLoaded) {
             final tvSeries = state.tvSeriesDetail;
-            
+
             // Log TV series viewed analytics
             FirebaseService.logTvSeriesViewed(tvSeries.id, tvSeries.name);
-            
+
             return SafeArea(
               child: DetailContent(
                 tvSeries,
@@ -135,8 +139,9 @@ class DetailContent extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () async {
                                 if (!isAddedWatchlist) {
-                                  context.read<TvSeriesDetailBloc>().add(
-                                      AddTvSeriesToWatchlist(tvSeries));
+                                  context
+                                      .read<TvSeriesDetailBloc>()
+                                      .add(AddTvSeriesToWatchlist(tvSeries));
                                 } else {
                                   context.read<TvSeriesDetailBloc>().add(
                                       RemoveTvSeriesFromWatchlist(tvSeries));
@@ -230,8 +235,7 @@ class DetailContent extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                          '${season.episodeCount} Episodes'),
+                                      Text('${season.episodeCount} Episodes'),
                                       if (season.airDate != null &&
                                           season.airDate!.isNotEmpty)
                                         Text('Air Date: ${season.airDate}'),
@@ -241,6 +245,75 @@ class DetailContent extends StatelessWidget {
                               );
                             }),
                             const SizedBox(height: 16),
+                            const Text(
+                              'Recommendations',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            BlocBuilder<TvSeriesRecommendationsBloc,
+                                TvSeriesRecommendationsState>(
+                              builder: (context, state) {
+                                if (state is TvSeriesRecommendationsLoading) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                } else if (state
+                                    is TvSeriesRecommendationsError) {
+                                  return Text(state.message);
+                                } else if (state
+                                    is TvSeriesRecommendationsLoaded) {
+                                  final recommendations = state.recommendations;
+                                  if (recommendations.isEmpty) {
+                                    return const Text(
+                                        'No recommendations available');
+                                  }
+                                  return SizedBox(
+                                    height: 150,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        final tvSeries = recommendations[index];
+                                        return Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushReplacementNamed(
+                                                context,
+                                                TvSeriesDetailPage.ROUTE_NAME,
+                                                arguments: tvSeries.id,
+                                              );
+                                            },
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.circular(8),
+                                              ),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    'https://image.tmdb.org/t/p/w500${tvSeries.posterPath}',
+                                                placeholder: (context, url) =>
+                                                    const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const Icon(Icons.error),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      itemCount: recommendations.length,
+                                    ),
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              },
+                            ),
                           ],
                         ),
                       ),
