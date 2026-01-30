@@ -137,6 +137,18 @@ build_runner: ^2.4.6
 
 ### Installation
 
+#### ✅ Firebase Already Configured!
+
+This project uses **Firebase** for Analytics and Crashlytics. Good news: **Firebase configuration files are already included** for easy review!
+
+You can **build and run immediately** without Firebase setup. ⚡
+
+📝 **Note**: Firebase files are included in this **private repository** for reviewer convenience. In production projects, these files should NOT be committed (use environment variables instead).
+
+---
+
+#### Standard Installation Steps
+
 1. **Clone repository**
    ```bash
    git clone https://github.com/your-username/Fluxpert01.git
@@ -148,7 +160,7 @@ build_runner: ^2.4.6
    flutter pub get
    ```
 
-3. **Generate mocks (untuk testing)**
+3. **Generate mocks (for testing)**
    ```bash
    flutter pub run build_runner build --delete-conflicting-outputs
    ```
@@ -170,6 +182,13 @@ build_runner: ^2.4.6
 **TMDB API Key** sudah included di code:
 - File: `lib/data/datasources/movie_remote_data_source.dart`
 - File: `lib/data/datasources/tv_series_remote_data_source.dart`
+
+**Firebase Config Files** (already included):
+- ✅ `android/app/google-services.json` (Android)
+- ✅ `ios/Runner/GoogleService-Info.plist` (iOS)
+- ✅ `lib/firebase_options.dart` (Flutter)
+
+📝 **Note**: These files are included for reviewer convenience. In production, use environment variables.
 
 ---
 

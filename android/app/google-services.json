@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "812200353510",
+    "project_id": "fluxpert-f92f6",
+    "storage_bucket": "fluxpert-f92f6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812200353510:android:893ba375ee3fa9b1dde527",
+        "android_client_info": {
+          "package_name": "com.dicoding.ditonton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOMbIC6HPR3vkQwysMSgSldKFv9Kz1i2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

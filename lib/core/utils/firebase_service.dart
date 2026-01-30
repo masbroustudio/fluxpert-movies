@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ditonton/firebase_options.dart';
 
 class FirebaseService {
   static FirebaseAnalytics? _analytics;
@@ -24,7 +25,9 @@ class FirebaseService {
 
   static Future<void> initialize() async {
     try {
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
       _analytics = FirebaseAnalytics.instance;
       _crashlytics = FirebaseCrashlytics.instance;
 
